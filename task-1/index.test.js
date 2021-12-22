@@ -5,6 +5,8 @@
  * Where necessary, have a look at the Jest docs: https://jestjs.io/docs/expect
  */
 
+const { request } = require("http");
+
 /**
  * Write a test that checks whether the variable `apiResponse`
  * contains an object that has the following structure:
@@ -64,9 +66,7 @@ test("Has the structure { success: true, payload: { hasAuthenticated: true, isAd
         userId: 125095,
       },
     };
-  }
-});
-
+}
 const actual = await getAuthentication();
 const expected = {
         success: true,
@@ -76,6 +76,8 @@ const expected = {
           userId: expect.any(Number)
         }
       }
+});
+
 
 /**
  * Write a test that checks whether the asynchronous function `getUsernames`, 
@@ -91,10 +93,15 @@ const expected = {
  * Since `getUsernames` is asynchronous, you may need to read up on 
  * how to write an asynchronous test in Jest: https://jestjs.io/docs/asynchronous
  */
-describe('GET /user', function(){
-  it('responds')
-
-})
+describe('GET /userNames', function(){
+  it('responds with json', function (done) {
+      request(app)
+      .get('/user')
+      .set ('Accept','application/json')
+      .expect ('Content-Type', /json/)
+      .expect (200,done);
+  }
+});
 
 async function getUsernames() {
   return {
@@ -105,12 +112,12 @@ async function getUsernames() {
       { username: "C" },
       { username: "D" },
     ],
-  };
+    const actual = await getUsernames();
+    
+    const expected = {
+          success: true,
+          payload: an array of objects with the structure { username: any string },
+};
+}
 }
 
-const actual = await getUsernames();
-
-const expected = {
-      success: true,
-      payload: an array of objects with the structure { username: any string },
-    }
