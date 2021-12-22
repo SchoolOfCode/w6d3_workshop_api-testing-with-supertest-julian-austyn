@@ -9,5 +9,8 @@
   "scripts": {
     "test": "cross-env NODE_OPTIONS=--experimental-vm-modules jest"
   },
-  "type": "module"
+  "type": "module",
+  "dependencies": {
+    "express": "^4.17.2"
+  }
 }
